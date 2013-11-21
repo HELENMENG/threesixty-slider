@@ -106,8 +106,8 @@
         base.loadImages();
       }
       if(AppCongif.disableSpin) {
-				AppCongif.currentFrame = 1;
-				AppCongif.endFrame = 1;
+        AppCongif.currentFrame = 1;
+        AppCongif.endFrame = 1;
       }
       base.initProgress();
     };
@@ -487,10 +487,20 @@
         base.hidePreviousFrame();
         AppCongif.currentFrame += frameEasing;
         base.showCurrentFrame();
+        base.triggerRendered();
       } else {
         window.clearInterval(AppCongif.ticker);
         AppCongif.ticker = 0;
       }
+    };
+
+    /**
+    * @method triggerRendered
+    * @private
+    * Function trigger jQuery event on element to notify changes
+    */
+    base.triggerRendered = function() {
+      base.$el.trigger('ThreeSixty.rendered', AppCongif);
     };
 
     /**
@@ -757,7 +767,7 @@
  */
 if (typeof Object.create !== 'function') {
   Object.create = function (o) {
-		'use strict';
+    'use strict';
     function F() {}
     F.prototype = o;
     return new F();
