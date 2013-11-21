@@ -502,7 +502,6 @@
     */
     base.triggerRendered = function() {
       base.$el.trigger('ThreeSixty.rendered', AppCongif);
-      console.log('here');
     };
 
     /**
